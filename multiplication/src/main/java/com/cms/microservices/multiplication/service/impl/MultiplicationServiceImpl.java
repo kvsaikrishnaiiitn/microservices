@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cms.microservices.multiplication.model.Multiplication;
+import com.cms.microservices.multiplication.model.MultiplicationResultAttempt;
 import com.cms.microservices.multiplication.service.MultiplicationService;
 import com.cms.microservices.multiplication.service.RandomGeneratorService;
 
@@ -16,6 +17,12 @@ public class MultiplicationServiceImpl implements MultiplicationService {
 	@Override
 	public Multiplication createRandomMultiplication() {
 		return new Multiplication(randomGeneratorService.getRandomFactor(), randomGeneratorService.getRandomFactor());
+	}
+
+	@Override
+	public boolean checkAttempt(MultiplicationResultAttempt attempt) {
+		return attempt.getResultAttempt() == attempt.getMultiplication().getFactorA()
+				* attempt.getMultiplication().getFactorB();
 	}
 
 }
