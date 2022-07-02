@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/microservices
+    username: root
+    password: root
+    driver-class-name: com.
+    
+  jpa:
+    hibernate:
+      ddl-auto: update  
