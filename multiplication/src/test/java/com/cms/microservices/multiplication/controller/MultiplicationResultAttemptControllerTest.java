@@ -1,13 +1,13 @@
 package com.cms.microservices.multiplication.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.BDDMockito;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.json.JacksonTester;
@@ -56,7 +56,7 @@ public class MultiplicationResultAttemptControllerTest {
 	private void genericParameterizedTest(final boolean correct) throws Exception {
 
 		// given
-		BDDMockito.given(multiplicationService.checkAttempt(any(MultiplicationResultAttempt.class)))
+		BDDMockito.given(multiplicationService.checkAttempt(Mockito.any(MultiplicationResultAttempt.class)))
 				.willReturn(correct);
 
 		Multiplication multiplication = new Multiplication(10, 20);
