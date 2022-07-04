@@ -8,10 +8,11 @@ import lombok.ToString;
 @ToString
 @RequiredArgsConstructor
 public final class Multiplication {
-	
+
 	private final int factorA;
 	private final int factorB;
-	
-	private int result;
 
+	public Multiplication() {
+		this(0, 0);
+	}
 }

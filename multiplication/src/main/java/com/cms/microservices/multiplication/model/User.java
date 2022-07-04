@@ -13,4 +13,7 @@ public final class User {
 
 	private final String alias;
 
+	User() {
+		this.alias = null;
+	}
 }
