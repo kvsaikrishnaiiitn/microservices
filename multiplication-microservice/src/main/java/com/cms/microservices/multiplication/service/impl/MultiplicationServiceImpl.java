@@ -62,8 +62,9 @@ public class MultiplicationServiceImpl implements MultiplicationService {
 				multiplicationResultAttempt.getResultAttempt(), isCorrect);
 
 		multiplicationResultAttemptRepository.save(checkedAttempt);
-		
-		eventDispatcher.send(new MultiplicationSolvedEvent(checkedAttempt.getId(), checkedAttempt.getUser().getId(), isCorrect));
+
+		eventDispatcher.send(
+				new MultiplicationSolvedEvent(checkedAttempt.getId(), checkedAttempt.getUser().getId(), isCorrect));
 
 		return isCorrect;
 	}
@@ -71,6 +72,12 @@ public class MultiplicationServiceImpl implements MultiplicationService {
 	@Override
 	public List<MultiplicationResultAttempt> getStatsForUser(String userAlias) {
 		return multiplicationResultAttemptRepository.findTop5ByUserAliasOrderByIdDesc(userAlias);
+	}
+
+	@Override
+	public MultiplicationResultAttempt getResultById(final Long resultId) {
+		return multiplicationResultAttemptRepository.findById(resultId).orElseThrow(
+				() -> new RuntimeException("Unable to find MultiplicationResultAttempt with id:" + resultId));
 	}
 
 }
