@@ -1,0 +1,5 @@
+- Download JETTY server zip from https://www.eclipse.org/jetty/download.php
+- Extract zip file to <JETTY_HOME> path
+- Open "cmd" in the current directory
+- java -jar <JETTY_HOME>/start.jar
+- Access http://localhost:9090/ui/index.html
