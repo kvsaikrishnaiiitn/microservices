@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.cms.microservices.gamification.client.dto.MultiplicationResultAttempt;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 /**
  * This implementation of MultiplicationResultAttemptClient interface connects
@@ -29,10 +30,16 @@ class MultiplicationResultAttemptClientImpl implements MultiplicationResultAttem
 	 * multiplicationHost; }
 	 */
 
+	@HystrixCommand(fallbackMethod = "defaultResult")
 	@Override
 	public MultiplicationResultAttempt retrieveMultiplicationResultAttemptbyId(
 			final Long multiplicationResultAttemptId) {
 		return restTemplate.getForObject(multiplicationHost + "/results/" + multiplicationResultAttemptId,
 				MultiplicationResultAttempt.class);
 	}
+	
+	 private MultiplicationResultAttempt defaultResult(final Long multiplicationResultAttemptId) {
+	        return new MultiplicationResultAttempt("fakeAlias",
+	                10, 10, 100, true);
+	    }
 }
