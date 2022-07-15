@@ -19,5 +19,7 @@ public interface ScoreCardRepository extends JpaRepository<ScoreCard, Long> {
 	List<LeaderBoardRow> findFirst10();
 
 	List<ScoreCard> findByUserIdOrderByScoreTimestampDesc(final Long userId);
+	
+	ScoreCard findByAttemptId(final Long attemptId);
 
 }

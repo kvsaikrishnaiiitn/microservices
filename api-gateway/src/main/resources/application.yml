@@ -25,6 +25,10 @@ zuul:
       #url: http://localhost:8081/stats
       service-id: gamification
       strip-prefix: false
+    scores:
+      path: /scores/**
+      service-id: gamification
+      strip-prefix: false
   
 endpoints:
   trace:

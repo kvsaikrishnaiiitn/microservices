@@ -134,4 +134,9 @@ public class GameServiceImpl implements GameService {
 		return badgeCard;
 	}
 
+	@Override
+	public ScoreCard getScoreForAttempt(final Long attemptId) {
+		return scoreCardRepository.findByAttemptId(attemptId);
+	}
+
 }
